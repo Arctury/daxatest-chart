@@ -25,10 +25,10 @@
       <h2 class="text-xl font-semibold mb-2">Market Commentary</h2>
     </section>
 
-    <!-- Main Chart (with TradingView) -->
+    <!-- Chart Section -->
     <section class="col-span-2 row-span-2 bg-purple-800 p-4">
       <h2 class="text-xl font-semibold mb-2">Stock Index Chart</h2>
-      <div id="chart" class="h-[500px] w-full"></div>
+      <div id="chart" class="w-full h-[500px] bg-black"></div>
     </section>
 
     <!-- Sector Pie -->
@@ -62,25 +62,27 @@
     </section>
   </main>
 
-  <!-- Chart Library and Script -->
+  <!-- TradingView Lightweight Charts -->
   <script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
   <script>
-    const chart = LightweightCharts.createChart(document.getElementById('chart'), {
-      layout: {
-        backgroundColor: '#0d0d0d',
-        textColor: '#ffffff',
-      },
-      width: document.getElementById('chart').clientWidth,
-      height: 500,
-    });
+    window.onload = function () {
+      const chart = LightweightCharts.createChart(document.getElementById('chart'), {
+        layout: {
+          backgroundColor: '#0d0d0d',
+          textColor: '#ffffff',
+        },
+        width: document.getElementById('chart').clientWidth,
+        height: 500,
+      });
 
-    const lineSeries = chart.addLineSeries({ color: '#00bcd4' });
-    lineSeries.setData([
-      { time: '2024-04-01', value: 173 },
-      { time: '2024-04-02', value: 174.5 },
-      { time: '2024-04-03', value: 171 },
-      { time: '2024-04-04', value: 175 },
-    ]);
+      const lineSeries = chart.addLineSeries({ color: '#00bcd4' });
+      lineSeries.setData([
+        { time: '2024-04-01', value: 173 },
+        { time: '2024-04-02', value: 174.5 },
+        { time: '2024-04-03', value: 171 },
+        { time: '2024-04-04', value: 175 },
+      ]);
+    };
   </script>
 </body>
 </html>
