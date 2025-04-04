@@ -66,25 +66,20 @@
 <!-- Lightweight Charts -->
 <script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
 <script>
-  window.onload = function () {
-    const chartElement = document.getElementById('chart');
-    const chart = LightweightCharts.createChart(chartElement, {
-      width: chartElement.clientWidth,
-      height: 500,
+  document.addEventListener('DOMContentLoaded', function () {
+    const chartContainer = document.getElementById('chart-container');
+
+    const chart = LightweightCharts.createChart(chartContainer, {
       layout: {
         backgroundColor: '#0d0d0d',
         textColor: '#ffffff',
       },
       grid: {
         vertLines: { color: '#444' },
-        horzLines: { color: '#444' }
+        horzLines: { color: '#444' },
       },
-      crosshair: {
-        mode: LightweightCharts.CrosshairMode.Normal,
-      },
-      timeScale: {
-        borderColor: '#888',
-      },
+      width: chartContainer.clientWidth,
+      height: 500,
     });
 
     const lineSeries = chart.addLineSeries({
@@ -92,14 +87,29 @@
       lineWidth: 2,
     });
 
-    lineSeries.setData([
+    const initialData = [
       { time: '2024-04-01', value: 173 },
       { time: '2024-04-02', value: 174.5 },
       { time: '2024-04-03', value: 171 },
       { time: '2024-04-04', value: 175 },
-    ]);
-  };
+    ];
+
+    lineSeries.setData(initialData);
+
+    // Real-time simulated update
+    let lastData = initialData[initialData.length - 1];
+
+    setInterval(() => {
+      const newTime = lastData.time + 86400; // next day in seconds
+      const newValue = lastData.value + (Math.random() * 4 - 2); // +/- 2
+
+      const newPoint = { time: newTime, value: newValue };
+      lineSeries.update(newPoint);
+      lastData = newPoint;
+    }, 2000);
+  });
 </script>
+
 
 </body>
 </html>
