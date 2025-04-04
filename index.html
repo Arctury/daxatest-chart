@@ -1,114 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAXA Market Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<title>DAXA Market Chart</title>
   <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
     #chart {
       width: 100%;
-      height: 100%;
+      height: 600px;
+    }
+    h1 {
+      padding: 1rem;
     }
   </style>
 </head>
-<body class="bg-black text-white font-sans">
-  <!-- Header -->
-  <header class="bg-red-900 text-white p-4">
-    <h1 class="text-2xl font-bold">Markets Overview</h1>
-  </header>
+<body>
+  <h1>Market Overview</h1>
+  <div id="chart"></div>
 
-  <!-- Main Layout -->
-  <main class="grid grid-cols-4 grid-rows-[auto_auto_auto] gap-4 p-4">
-    <!-- Market Commentary -->
-    <section class="col-span-1 row-span-2 bg-green-900 p-4">
-      <h2 class="text-xl font-semibold mb-2">Market Commentary</h2>
-    </section>
+  <!-- TradingView Lightweight Charts Standalone Library -->
+  <script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="scripts/charting.js"></script>
 
-    <!-- Chart Section -->
-    <section class="col-span-2 row-span-2 bg-purple-800 p-4">
-      <h2 class="text-xl font-semibold mb-2">Stock Index Chart</h2>
-      <div id="chart" class="w-full h-[500px] bg-black"></div>
-    </section>
-
-    <!-- Sector Pie -->
-    <section class="col-span-1 row-span-1 bg-pink-700 p-4">
-      <h2 class="text-xl font-semibold mb-2">Sector Performance</h2>
-    </section>
-
-    <!-- News -->
-    <section class="col-span-1 row-span-1 bg-blue-800 p-4">
-      <h2 class="text-xl font-semibold mb-2">News Feed</h2>
-    </section>
-
-    <!-- Trading Signals -->
-    <section class="col-span-1 row-span-1 bg-blue-900 p-4">
-      <h2 class="text-xl font-semibold mb-2">Trading Signals</h2>
-    </section>
-
-    <!-- Commodities -->
-    <section class="col-span-1 row-span-1 bg-yellow-900 p-4">
-      <h2 class="text-xl font-semibold mb-2">Commodities</h2>
-    </section>
-
-    <!-- Currencies -->
-    <section class="col-span-1 row-span-1 bg-orange-900 p-4">
-      <h2 class="text-xl font-semibold mb-2">Currencies</h2>
-    </section>
-
-    <!-- Yields -->
-    <section class="col-span-1 row-span-1 bg-lime-800 p-4">
-      <h2 class="text-xl font-semibold mb-2">Yields</h2>
-    </section>
-  </main>
-
-  <!-- TradingView Lightweight Charts -->
-<!-- Lightweight Charts -->
-<script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const chartContainer = document.getElementById('chart-container');
-
-    const chart = LightweightCharts.createChart(chartContainer, {
-      layout: {
-        backgroundColor: '#0d0d0d',
-        textColor: '#ffffff',
-      },
-      grid: {
-        vertLines: { color: '#444' },
-        horzLines: { color: '#444' },
-      },
-      width: chartContainer.clientWidth,
-      height: 500,
-    });
-
-    const lineSeries = chart.addLineSeries({
-      color: '#00bcd4',
-      lineWidth: 2,
-    });
-
-    const initialData = [
-      { time: '2024-04-01', value: 173 },
-      { time: '2024-04-02', value: 174.5 },
-      { time: '2024-04-03', value: 171 },
-      { time: '2024-04-04', value: 175 },
-    ];
-
-    lineSeries.setData(initialData);
-
-    // Real-time simulated update
-    let lastData = initialData[initialData.length - 1];
-
-    setInterval(() => {
-      const newTime = lastData.time + 86400; // next day in seconds
-      const newValue = lastData.value + (Math.random() * 4 - 2); // +/- 2
-
-      const newPoint = { time: newTime, value: newValue };
-      lineSeries.update(newPoint);
-      lastData = newPoint;
-    }, 2000);
-  });
-
-
-</body>
-</html>
