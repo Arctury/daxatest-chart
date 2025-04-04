@@ -63,26 +63,43 @@
   </main>
 
   <!-- TradingView Lightweight Charts -->
-  <script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
-  <script>
-    window.onload = function () {
-      const chart = LightweightCharts.createChart(document.getElementById('chart'), {
-        layout: {
-          backgroundColor: '#0d0d0d',
-          textColor: '#ffffff',
-        },
-        width: document.getElementById('chart').clientWidth,
-        height: 500,
-      });
+<!-- Lightweight Charts -->
+<script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+  window.onload = function () {
+    const chartElement = document.getElementById('chart');
+    const chart = LightweightCharts.createChart(chartElement, {
+      width: chartElement.clientWidth,
+      height: 500,
+      layout: {
+        backgroundColor: '#0d0d0d',
+        textColor: '#ffffff',
+      },
+      grid: {
+        vertLines: { color: '#444' },
+        horzLines: { color: '#444' }
+      },
+      crosshair: {
+        mode: LightweightCharts.CrosshairMode.Normal,
+      },
+      timeScale: {
+        borderColor: '#888',
+      },
+    });
 
-      const lineSeries = chart.addLineSeries({ color: '#00bcd4' });
-      lineSeries.setData([
-        { time: '2024-04-01', value: 173 },
-        { time: '2024-04-02', value: 174.5 },
-        { time: '2024-04-03', value: 171 },
-        { time: '2024-04-04', value: 175 },
-      ]);
-    };
-  </script>
+    const lineSeries = chart.addLineSeries({
+      color: '#00bcd4',
+      lineWidth: 2,
+    });
+
+    lineSeries.setData([
+      { time: '2024-04-01', value: 173 },
+      { time: '2024-04-02', value: 174.5 },
+      { time: '2024-04-03', value: 171 },
+      { time: '2024-04-04', value: 175 },
+    ]);
+  };
+</script>
+
 </body>
 </html>
