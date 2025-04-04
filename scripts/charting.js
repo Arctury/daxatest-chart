@@ -1,17 +1,14 @@
-const chart = LightweightCharts.createChart(document.getElementById('chart'), {
-  layout: {
-    backgroundColor: '#0d0d0d',
-    textColor: '#ffffff',
-  },
-  width: window.innerWidth,
-  height: 600,
-});
-
-const lineSeries = chart.addSeries({ type: 'line', color: '#00bcd4' });
-
+const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
+const lineSeries = chart.addSeries(LightweightCharts.LineSeries);
 lineSeries.setData([
-  { time: '2024-04-01', value: 173 },
-  { time: '2024-04-02', value: 174.5 },
-  { time: '2024-04-03', value: 171 },
-  { time: '2024-04-04', value: 175 },
+    { time: '2019-04-11', value: 80.01 },
+    { time: '2019-04-12', value: 96.63 },
+    { time: '2019-04-13', value: 76.64 },
+    { time: '2019-04-14', value: 81.89 },
+    { time: '2019-04-15', value: 74.43 },
+    { time: '2019-04-16', value: 80.01 },
+    { time: '2019-04-17', value: 96.63 },
+    { time: '2019-04-18', value: 76.64 },
+    { time: '2019-04-19', value: 81.89 },
+    { time: '2019-04-20', value: 74.43 },
 ]);
