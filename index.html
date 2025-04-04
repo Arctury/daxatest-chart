@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAXA Market Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #chart {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body class="bg-black text-white font-sans">
   <!-- Header -->
@@ -20,9 +25,10 @@
       <h2 class="text-xl font-semibold mb-2">Market Commentary</h2>
     </section>
 
-    <!-- Main Chart -->
+    <!-- Main Chart (with TradingView) -->
     <section class="col-span-2 row-span-2 bg-purple-800 p-4">
       <h2 class="text-xl font-semibold mb-2">Stock Index Chart</h2>
+      <div id="chart" class="h-[500px] w-full"></div>
     </section>
 
     <!-- Sector Pie -->
@@ -55,5 +61,26 @@
       <h2 class="text-xl font-semibold mb-2">Yields</h2>
     </section>
   </main>
+
+  <!-- Chart Library and Script -->
+  <script src="https://unpkg.com/lightweight-charts@5.0.5/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chart = LightweightCharts.createChart(document.getElementById('chart'), {
+      layout: {
+        backgroundColor: '#0d0d0d',
+        textColor: '#ffffff',
+      },
+      width: document.getElementById('chart').clientWidth,
+      height: 500,
+    });
+
+    const lineSeries = chart.addLineSeries({ color: '#00bcd4' });
+    lineSeries.setData([
+      { time: '2024-04-01', value: 173 },
+      { time: '2024-04-02', value: 174.5 },
+      { time: '2024-04-03', value: 171 },
+      { time: '2024-04-04', value: 175 },
+    ]);
+  </script>
 </body>
 </html>
